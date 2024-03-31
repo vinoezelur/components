@@ -1,0 +1,73 @@
+<!--
+  @File Name          : twoLevelDropdown
+  @Description        : This component displays a multilevel dropdown either from a Field or from Static values
+  @Author             : Vinothraja
+  @Last Modified By   :
+  @Last Modified On   :
+  @Modification Log   :
+  Ver   Date            Author                  Modification
+  1.0   17-Mar-24       Vinothraja              Created
+-->
+<template>
+    <!-- DROPDOWN - START -->
+    <div class="dropdown">
+        <br/>
+        Select building type for Verification Rating <abbr class="slds-required" title="required"> *</abbr></b>
+        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown" data-id="secondaryDropdown" onclick={handleClickMenu} tabindex="0" onblur={handleFocusOutSecondary}>
+            <div class="slds-grid slds-p-vertical_xx-small">
+                <div class="slds-col slds-size_11-of-12">{selectedOption.label}</div>
+                <div class="slds-col slds-size_1-of-12 dropdown-caret"><lightning-icon icon-name="utility:down" size="xx-small"></lightning-icon></div>
+            </div>
+        </button>
+        <ul class="dropdown-menu" data-id="secondary" tabindex="0" >
+            <template for:each={menuitems} for:item="menuitem">
+                    <li class={menuitem.css} key={menuitem.value}>
+                    <!-- DROPDOWN - MENU GROUP - START -->
+                    <template lwc:if={menuitem.hasSubTypes}>
+                        <a tabindex="0" href="#" onmouseenter={handleEnterMenuGroup}  data-menuitem={menuitem.value}>
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size_1-of-12 slds-p-vertical_xxx-small"></div>
+                                <div class="slds-col slds-size_10-of-12 slds-p-vertical_xxx-small">
+                                    <template lwc:if={menuitem.selected}><p class="selected">{menuitem.label}</p></lightning-icon></template>
+                                    <template lwc:else>{menuitem.label}</lightning-icon></template>
+                                </div>
+                                <div class="slds-col slds-size_1-of-12 slds-p-vertical_xxx-small dropdown-caret">
+                                    <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                                </div>
+                            </div>    
+                        </a> 
+                        <!-- DROPDOWN - SUB-MENU ITEMS - START -->
+                        <ul class="dropdown-menu" data-id={menuitem.value} tabindex="0" >
+                            <template for:each={menuitem.subMenuItems} for:item="subMenuItem">
+                                <c-two-level-dropdown-item key={subMenuItem.value} sub-menu-item={subMenuItem} onselected={handleClickSubMenuItem} selected={selectedOption}></c-two-level-dropdown-item>
+                            </template>
+                        </ul> 
+                        <!-- DROPDOWN - SUB-MENU ITEMS - END -->
+                    </template>
+                    <!-- DROPDOWN - MENU GROUP - END -->
+                    <!-- DROPDOWN - MENU ITEMS - START -->
+                    <template lwc:else>
+                        <a tabindex="0" href="#" onmousedown={handleClickMenuItem} data-menuitem={menuitem.value}>
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size_1-of-12">
+                                    <template lwc:if={menuitem.selected}><lightning-icon icon-name="utility:check" size="x-small"></lightning-icon></template>
+                                </div>
+                                <div class="slds-col slds-size_10-of-12">{menuitem.label}</div>
+                                <div class="slds-col slds-size_1-of-12"></div>
+                            </div>    
+                        </a> 
+                    </template>
+                    <!-- DROPDOWN - MENU ITEMS - END -->
+                </li> 
+            </template>
+        </ul>
+    </div>
+    <!-- DROPDOWN - END -->
+    <!-- DROPDOWN - VALIDATION MSG - START -->
+    <template lwc:if={isValueMissing}>
+        <div class="slds-has-error">
+            <label class="slds-form-element__help">{messageWhenValueMissing}</label>
+        </div>
+    </template>
+    <!-- DROPDOWN - VALIDATION MSG - END -->
+</template>
