@@ -1,0 +1,24 @@
+<!--
+  @File Name          : twoLevelDropdownItem
+  @Description        : This child component displays the second level menu (Building Types under a sector)
+  @Author             : Vinothraja
+  @Last Modified By   :
+  @Last Modified On   :
+  @Modification Log   :
+  Ver   Date            Author                  Modification
+  1.0   17-Mar-24       Vinothraja              Initial
+-->
+<template>
+    <li class="dropdown-submenu" >
+        <a class="submenu" tabindex="-1" href="#" onmousedown={handleSelectSubMenuItem}>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-12">
+                    <template lwc:if={isSelected}>
+                        <lightning-icon icon-name="utility:check" size="x-small"></lightning-icon>
+                    </template>
+                </div>
+                <div class="slds-col slds-size_11-of-12">{subMenuItem.label}</div>
+            </div>
+        </a>
+    </li>
+</template>
