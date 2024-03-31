@@ -8,11 +8,14 @@ This component renders static values or a picklist field's values as 2-level dro
 
 ## Data setup:
 1. When the Picklist field is setup, the Group names should be prefixed to the sub-Menu Items. For ex. When adding a new sub-Menu Item **Libraries** under a Group  **Public buildings**, the picklist value to be created as below:
-**Label**: Libraries
-**API Name**: Public_buildings__Libraries
+
+   **Label**: Libraries
+
+   **API Name**: Public_buildings__Libraries
+
     1. Double underscores used as delimiters between Group names and sub-menu items
     2. underscores in names will be converted to spaces
-2. Please tweak the constants file `twoLevelDropdownConstants.js` in the `twoLevelDropdown` component for static values
+3. Please tweak the constants file `twoLevelDropdownConstants.js` in the `twoLevelDropdown` component for static values
 
 ## Usage
 
