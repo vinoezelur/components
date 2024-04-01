@@ -22,13 +22,13 @@ This component renders static values or a picklist field's values as 2-level dro
 ### html
 ```
     <template>
-        <c-no-building-type 
+        <c-two-level-dropdown 
             selected-option = {buildingType} 
             use-static-values = false 
             onselected = {onBuildingTypeChange} 
             disabled = false 
             message-when-value-missing = "This field is required.">
-        </c-no-building-type>
+        </c-two-level-dropdown>
     </template>
 ```
 ### js
